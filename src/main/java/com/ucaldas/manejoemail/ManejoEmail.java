@@ -70,7 +70,7 @@ public class ManejoEmail {
             case 2:
                 System.out.println("Redactar correo");
                 System.out.println();
-                // Aquí se puede crear la lógica para enviar un correo
+                // lógica para enviar un correo
                 RedactarMail redactarMail = new RedactarMail(usuarioAutenticado, scanner);
                 redactarMail.redactarMensaje();
                 break;
@@ -80,6 +80,7 @@ public class ManejoEmail {
                 int numeroMensaje = leerEntero("Ingrese el número del mensaje a ver: ", scanner);
                 Mensaje mensaje = revisarBandejaEntrada2.seleccionarMensaje(numeroMensaje);
                 // ver mensaje
+                System.out.println();
                 try {
                     revisarBandejaEntrada2.mostrarMensajes();
                     VerMensaje.verMensaje(mensaje);
