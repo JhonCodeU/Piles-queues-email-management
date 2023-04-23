@@ -25,8 +25,12 @@ public class ManejoEmail {
         RegistroEmail registro = new RegistroEmail();
         Usuario usuario1 = new Usuario("Juan", "Pérez", "jperez", "jperez@ucaldas.edu.co", "password");
         Usuario usuario2 = new Usuario("María", "García", "mgarcia", "mgarcia@ucaldas.edu.co", "admin");
+        Usuario usuario3 = new Usuario("Carlos", "Gómez", "cgomez", "carlos@ucaldas.edu.co", "1234");
+        Usuario usuario4 = new Usuario("Valentina", "González", "vgonzalez", "vale@ucaldas.edu.co", "1234");
         registro.agregarUsuario(usuario1);
         registro.agregarUsuario(usuario2);
+        registro.agregarUsuario(usuario3);
+        registro.agregarUsuario(usuario4);
 
         Scanner scanner = new Scanner(System.in);
         IngresoMail ingresoMail = new IngresoMail(registro, scanner);

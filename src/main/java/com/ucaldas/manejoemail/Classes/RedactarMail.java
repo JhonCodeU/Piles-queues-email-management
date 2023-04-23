@@ -15,6 +15,8 @@ public class RedactarMail {
   }
 
   public void redactarMensaje() {
+    // Descartar el salto de línea
+    scanner.nextLine();
     System.out.println("Ingrese los destinatarios (separados por ;): ");
     String[] destinatarios = scanner.nextLine().split(";");
     System.out.println("Ingrese el asunto: ");
