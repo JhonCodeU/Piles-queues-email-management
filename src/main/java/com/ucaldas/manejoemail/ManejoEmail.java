@@ -10,11 +10,12 @@ import com.ucaldas.manejoemail.Classes.IngresoMail;
 import com.ucaldas.manejoemail.Classes.RedactarMail;
 import com.ucaldas.manejoemail.Classes.RegistroEmail;
 import com.ucaldas.manejoemail.Classes.RevisarBandejaEntrada;
+import com.ucaldas.manejoemail.Classes.VerMensaje;
+import com.ucaldas.manejoemail.Models.Mensaje;
 import com.ucaldas.manejoemail.Models.Usuario;
 
 /**
  *
- * System.out.println("Nombre: " + JhonUser.getNombre());
  * 
  * @author johnca
  */
@@ -33,31 +34,63 @@ public class ManejoEmail {
 
         if (usuarioAutenticado != null) {
             // Mostrar opciones para el usuario autenticado
-            System.out.println("Opciones para el usuario autenticado:");
-            System.out.println("1. Revisar bandeja de entrada");
-            System.out.println("2. Redactar un correo");
+            Boolean salir = false;
+            while (!salir) {
+                System.out.println();
+                System.out.println("Opciones para el usuario autenticado:");
+                System.out.println("1. Revisar bandeja de entrada");
+                System.out.println("2. Redactar un correo");
+                System.out.println("3. Ver mensaje");
+                System.out.println("4. Salir");
+                System.out.println();
 
-            int opcion = leerEntero("Ingrese una opción: ", scanner);
-            switch (opcion) {
-                case 1:
-                    RevisarBandejaEntrada revisarBandejaEntrada = new RevisarBandejaEntrada(usuarioAutenticado);
-                    revisarBandejaEntrada.mostrarMensajes();
-                    break;
-                case 2:
-                    System.out.println("Redactar correo");
-                    // Aquí se puede crear la lógica para enviar un correo
-                    RedactarMail redactarMail = new RedactarMail(usuarioAutenticado, scanner);
-                    redactarMail.redactarMensaje();
-                    // ver bandeja de entrada
-                    RevisarBandejaEntrada revisarBandejaEntrada2 = new RevisarBandejaEntrada(usuarioAutenticado);
-                    revisarBandejaEntrada2.mostrarMensajes();
-                    break;
-                default:
-                    System.out.println("Opción no válida.");
-                    break;
+                int opcion = leerEntero("Ingrese una opción: ", scanner);
+                Menu(opcion, usuarioAutenticado, scanner);
+                if (opcion == 4)
+                    salir = true;
             }
         }
         scanner.close();
+    }
+
+    public static void Menu(Integer opcion, Usuario usuarioAutenticado, Scanner scanner) {
+
+        System.out.println();
+
+        switch (opcion) {
+            case 1:
+                // ver bandeja de entrada
+                RevisarBandejaEntrada revisarBandejaEntrada = new RevisarBandejaEntrada(usuarioAutenticado);
+                revisarBandejaEntrada.mostrarMensajes();
+                break;
+            case 2:
+                System.out.println("Redactar correo");
+                System.out.println();
+                // Aquí se puede crear la lógica para enviar un correo
+                RedactarMail redactarMail = new RedactarMail(usuarioAutenticado, scanner);
+                redactarMail.redactarMensaje();
+                break;
+            case 3:
+                // seleccionar mensaje
+                RevisarBandejaEntrada revisarBandejaEntrada2 = new RevisarBandejaEntrada(usuarioAutenticado);
+                int numeroMensaje = leerEntero("Ingrese el número del mensaje a ver: ", scanner);
+                Mensaje mensaje = revisarBandejaEntrada2.seleccionarMensaje(numeroMensaje);
+                // ver mensaje
+                try {
+                    revisarBandejaEntrada2.mostrarMensajes();
+                    VerMensaje.verMensaje(mensaje);
+                } catch (Exception e) {
+                    System.out.println("No se encontró el mensaje con número " + numeroMensaje + ".");
+                }
+                break;
+            case 4:
+                System.out.println("Saliendo...");
+                break;
+            default:
+                System.out.println("Opción no válida.");
+                break;
+        }
+
     }
 
     public static int leerEntero(String mensaje, Scanner scanner) {

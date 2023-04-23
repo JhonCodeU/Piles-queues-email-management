@@ -23,7 +23,9 @@ public class IngresoMail {
 
     for (Usuario u : registro.getUsuarios()) {
       if (u.getUsuario().equals(usuario) && u.getContrasena().equals(contrasena)) {
+        System.out.println("----------------------------------------------------------");
         System.out.println("Bienvenido, " + u.getNombre() + " " + u.getApellidos() + "!");
+        System.out.println("----------------------------------------------------------");
         return u;
       }
     }

@@ -15,8 +15,8 @@ public class RedactarMail {
   }
 
   public void redactarMensaje() {
-    System.out.println("Ingrese los destinatarios (separados por coma): ");
-    String[] destinatarios = scanner.nextLine().split(",");
+    System.out.println("Ingrese los destinatarios (separados por ;): ");
+    String[] destinatarios = scanner.nextLine().split(";");
     System.out.println("Ingrese el asunto: ");
     String asunto = scanner.nextLine();
     System.out.println("Ingrese el mensaje: ");

@@ -18,10 +18,8 @@ public class RevisarBandejaEntrada {
     if (pilaMensajes.empty()) {
       System.out.println("No hay mensajes en la bandeja de entrada.");
     } else {
-      int i = 1;
       for (Mensaje mensaje : pilaMensajes) {
-        System.out.println(i + ". " + mensaje.getRemitente() + " - " + mensaje.getAsunto());
-        i++;
+        System.out.println(mensaje.getId() + ": " + mensaje.getRemitente() + " - " + mensaje.getAsunto());
       }
     }
   }
@@ -32,12 +30,10 @@ public class RevisarBandejaEntrada {
       System.out.println("No hay mensajes en la bandeja de entrada.");
       return null;
     } else {
-      int i = 1;
       for (Mensaje mensaje : pilaMensajes) {
-        if (i == numeroMensaje) {
+        if (mensaje.getId() == numeroMensaje) {
           return mensaje;
         }
-        i++;
       }
       System.out.println("No se encontró el mensaje con número " + numeroMensaje + ".");
       return null;
