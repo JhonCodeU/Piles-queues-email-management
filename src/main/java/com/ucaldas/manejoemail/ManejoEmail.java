@@ -31,6 +31,8 @@ public class ManejoEmail {
         registro.agregarUsuario(usuario2);
         registro.agregarUsuario(usuario3);
         registro.agregarUsuario(usuario4);
+        // separe los correos para que se vea mejor
+        // mgarcia@ucaldas.edu.co; carlos@ucaldas.edu.edu;
 
         Scanner scanner = new Scanner(System.in);
         IngresoMail ingresoMail = new IngresoMail(registro, scanner);
